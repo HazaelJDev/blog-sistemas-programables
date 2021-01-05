@@ -2,9 +2,9 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Layout, { siteTitle } from '../components/layout'
-import Date from '../components/date'
+//import Date from '../components/date'
 import { getSortedPostsData } from '../lib/posts'
-import utilStyles from '../styles/utils.module.css'
+//import utilStyles from '../styles/utils.module.css'
 
 
 export async function getStaticProps() {
@@ -23,7 +23,7 @@ export default function Home({allPostsData}) {
         <html lang="en" />
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
+      <section>
         <p>El microcontrolador ejecuta el programa cargado en la memoria Flash. Esto se
           denomina el código ejecutable y está compuesto por una serie de ceros y unos,
           aparentemente sin significado. Dependiendo de la arquitectura del microcontrolador, el código binario está compuesto por palabras de 12, 14 o 16
@@ -48,19 +48,25 @@ Admitiendo <dato> todos los tipos de direccionamiento.
 Si se necesita activar o desactivar un bit de un puerto ( se puede hacer extensivo a todos los
 registros direccionales bit a bit del SFR), puede hacerlo utilizando las instrucciones booleanas.`}</p>
       </section>
-      ..3333
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
+      <section>
+        <h2>Blog</h2>
+        <ul>
+          {allPostsData[0].map(({id,title,unidad}) => (
+            <li key={id}>
+              <Link href={`/${unidad}/${id}`}>
                 <a>{title}</a>
               </Link>
               <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
+            </li>
+          ))}
+        </ul>
+        <ul>
+          {allPostsData[1].map(({ id,title,unidad}) => (
+            <li key={id}>
+              <Link href={`/${unidad}/${id}`}>
+                <a>{title}</a>
+              </Link>
+              <br />
             </li>
           ))}
         </ul>
