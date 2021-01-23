@@ -18,9 +18,8 @@ export async function getStaticProps() {
 
 export default function Home({allPostsData}) {
   return (
-    <Layout home>
+    <Layout home allPostsData={allPostsData}>
       <Head>
-        <html lang="en" />
         <title>{siteTitle}</title>
       </Head>
       <section>
@@ -35,41 +34,19 @@ export default function Home({allPostsData}) {
           frecuencia como una serie de los números hexadecimales denominada código
           Hex. En los microcontroladores PIC con las palabras de programa de 14 bits de
           anchura, el conjunto de instrucciones tiene 35 instrucciones diferentes.
-      </p>
-      <p>{`La operación de escritura, utilizando los puertos puede ser realizada por cualquiera de ellos, no
-obstante, el puerto PO es el que presenta una mayor cargabilidad, permitiendo comandar ocho
-cargas TTL - LS, mientras que los otros tres permiten cuatro cargas TTL – LS.
-Para comandar cargas de mayor consumo energético, como relés, se recomienda utilizar, entre el
-puerto y la carga drivers no inversores. Para la operación de
-ESCRITURA en el puerto, la instrucción más habitual es la siguiente:
-MOV PX , <dato> ; PX<- dato.
-X toma valores 0, 1, 2 y 3 según el puerto.
-Admitiendo <dato> todos los tipos de direccionamiento.
-Si se necesita activar o desactivar un bit de un puerto ( se puede hacer extensivo a todos los
-registros direccionales bit a bit del SFR), puede hacerlo utilizando las instrucciones booleanas.`}</p>
-      </section>
-      <section>
-        <h2>Blog</h2>
-        <ul>
-          {allPostsData[0].map(({id,title,unidad}) => (
-            <li key={id}>
-              <Link href={`/${unidad}/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-            </li>
-          ))}
-        </ul>
-        <ul>
-          {allPostsData[1].map(({ id,title,unidad}) => (
-            <li key={id}>
-              <Link href={`/${unidad}/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-            </li>
-          ))}
-        </ul>
+        </p>
+        <p>{`La operación de escritura, utilizando los puertos puede ser realizada por cualquiera de ellos, no
+            obstante, el puerto PO es el que presenta una mayor cargabilidad, permitiendo comandar ocho
+            cargas TTL - LS, mientras que los otros tres permiten cuatro cargas TTL – LS.
+            Para comandar cargas de mayor consumo energético, como relés, se recomienda utilizar, entre el
+            puerto y la carga drivers no inversores. Para la operación de
+            ESCRITURA en el puerto, la instrucción más habitual es la siguiente:
+            MOV PX , <dato> ; PX<- dato.
+            X toma valores 0, 1, 2 y 3 según el puerto.
+            Admitiendo <dato> todos los tipos de direccionamiento.
+            Si se necesita activar o desactivar un bit de un puerto ( se puede hacer extensivo a todos los
+            registros direccionales bit a bit del SFR), puede hacerlo utilizando las instrucciones booleanas.`}
+        </p>
       </section>
     </Layout>
   )

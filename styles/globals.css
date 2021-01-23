@@ -20,3 +20,98 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.contLayout{
+  @apply bg-mainBrand-700 min-w-full min-h-screen px-4;
+}
+
+.layout{
+  @apply grid grid-cols-12 gap-5;
+}
+
+/*Text Styles*/
+.Titles {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 70px;
+}
+
+.Subtitles {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 37px;
+}
+
+.UnidadTitle {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+}
+
+.Text-BreadCrumbs {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+/*Components*/
+.NavMenu {
+  @apply bg-mainBrand-500 col-span-3 grid grid-cols-4 gap-5 min-h-screen;
+  box-shadow: 4px 0px 4px rgba(35, 27, 24, 0.25);
+}
+
+.titleMenu {
+  @apply col-span-4;
+}
+
+.Menus {
+  @apply col-span-4;
+}
+
+.avatar {
+  @apply rounded-full;
+  width: 200px;
+  height: 200px;
+  /*left: 53px;
+  top: 24px;*/
+  box-shadow: 4px 4px 4px rgba(35, 27, 24, 0.25);
+}
+
+.cardMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px;
+  min-width: 100%;
+  background: #F6F5F3;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.TitleMateria {
+  @apply Subtitles text-lightAccents-500;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.contContenido{
+  @apply col-span-9 col-start-4 grid grid-cols-9 gap-5 grid-flow-row;
+}
+
+.navContenido{
+  @apply col-span-9 col-start-1 h-12;
+}
+
+.contenido{
+  @apply col-span-9 col-start-1;
+}
