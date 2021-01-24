@@ -2,8 +2,8 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Layout, { siteTitle } from '../components/layout'
-//import Date from '../components/date'
 import { getSortedPostsData } from '../lib/posts'
+//import Date from '../components/date'
 //import utilStyles from '../styles/utils.module.css'
 
 
@@ -23,7 +23,7 @@ export default function Home({allPostsData}) {
         <title>{siteTitle}</title>
       </Head>
       <section>
-        <p>El microcontrolador ejecuta el programa cargado en la memoria Flash. Esto se
+        <p className="Text-Breadcumbs">{`El microcontrolador ejecuta el programa cargado en la memoria Flash. Esto se
           denomina el código ejecutable y está compuesto por una serie de ceros y unos,
           aparentemente sin significado. Dependiendo de la arquitectura del microcontrolador, el código binario está compuesto por palabras de 12, 14 o 16
           bits de anchura. Cada palabra se interpreta por la CPU como una instrucción a ser
@@ -33,9 +33,10 @@ export default function Home({allPostsData}) {
           sistema de numeración hexadecimal, el código ejecutable se representa con
           frecuencia como una serie de los números hexadecimales denominada código
           Hex. En los microcontroladores PIC con las palabras de programa de 14 bits de
-          anchura, el conjunto de instrucciones tiene 35 instrucciones diferentes.
+          anchura, el conjunto de instrucciones tiene 35 instrucciones diferentes.`}
         </p>
-        <p>{`La operación de escritura, utilizando los puertos puede ser realizada por cualquiera de ellos, no
+        <br />
+        <p className="Text-BreadCrumbs">{`La operación de escritura, utilizando los puertos puede ser realizada por cualquiera de ellos, no
             obstante, el puerto PO es el que presenta una mayor cargabilidad, permitiendo comandar ocho
             cargas TTL - LS, mientras que los otros tres permiten cuatro cargas TTL – LS.
             Para comandar cargas de mayor consumo energético, como relés, se recomienda utilizar, entre el

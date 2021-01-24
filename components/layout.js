@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import {useState} from 'react';
 import styles from './layout.module.css'
 //import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
@@ -6,7 +7,11 @@ import Link from 'next/link'
 const name = 'Hazael Jiménez'
 export const siteTitle = 'Sistemas Programables'
 
-export default function Layout({ children, home, allPostsData}) {
+export default function Layout({ children, home, allPostsData, breadcrumb}) {
+  const [darkMode, setDarkMode] = useState('dark_mode');
+  const handleDarkMode = () => {
+    setDarkMode( darkMode === 'light_mode' ? 'dark_mode' : 'light_mode')
+  }
   return (
     <div>
       <Head>
@@ -23,13 +28,14 @@ export default function Layout({ children, home, allPostsData}) {
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       </Head>
       <div className="contLayout">
         <div className="layout">
           <nav className="NavMenu">
             <header className="titleMenu">
               <img className="avatar" src="https://res.cloudinary.com/hazadev01/image/upload/v1609907719/microcontroladores_lymjpl.jpg" alt="imgMateria" />
-              <h1 className="TitleMateria">Sistemas Programables</h1>
+              <Link href="/"><h1 className="TitleMateria">Sistemas Programables</h1></Link>
             </header>
             <section class="Menus">
               <menu class="cardMenu">
@@ -62,8 +68,8 @@ export default function Layout({ children, home, allPostsData}) {
           </nav>
           <main className="contContenido">
             <nav className="navContenido">
-              <div className="">breadcrumbs</div>
-              <button className="">dark</button>
+              <div className="Text-BreadCrumbs">{breadcrumb !== undefined ? `Home > Unidad ${breadcrumb[0]} > ${breadcrumb}` : 'Home'}</div>
+              <button className="" onClick={handleDarkMode}><span class={`material-icons md-48 ${darkMode === 'light_mode' ? 'text-lightAccents-500' : 'text-lightShades-700'}`}>{darkMode}</span></button>
             </nav>
             <section className="contenido">
               <main>{children}</main>

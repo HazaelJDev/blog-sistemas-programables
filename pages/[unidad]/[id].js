@@ -26,13 +26,13 @@ export async function getStaticPaths() {
 
 export default function Post({ postData, allPostsData }) {
     return (
-      <Layout allPostsData={allPostsData}>
+      <Layout allPostsData={allPostsData} breadcrumb={postData.title}>
         <Head>
           <title>{postData.title}</title>
         </Head>
         <article>
-          <h1>{postData.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+          <h1 className="Titles">{postData.title}</h1>
+          <div className="Text-BreadCrumbs" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
         </article>
       </Layout>
     )
