@@ -32,7 +32,8 @@ export default function Post({ postData, allPostsData }) {
         </Head>
         <article>
           <h1 className="Titles">{postData.title}</h1>
-          <div className="Text-BreadCrumbs" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+          <br />
+          <div className="Text-BreadCrumbs bodyPost" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
         </article>
       </Layout>
     )

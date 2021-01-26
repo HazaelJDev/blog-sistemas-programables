@@ -54,7 +54,7 @@ export default function Layout({ children, home, allPostsData, breadcrumb, btnTh
                   {allPostsData[0].map(({id,title,unidad}) => (
                     <li className="Text-BreadCrumbs" key={id}>
                       <Link href={`/${unidad}/${id}`}>
-                        <a>{title}</a>
+                        <a className={`${(id === breadcrumb.substring(0,3)) ? 'itemLink activeLink':'itemLink'}`}>{title}</a> 
                       </Link>
                       <br />
                     </li>
@@ -67,7 +67,7 @@ export default function Layout({ children, home, allPostsData, breadcrumb, btnTh
                   {allPostsData[1].map(({ id,title,unidad}) => (
                     <li className="Text-BreadCrumbs" key={id}>
                       <Link href={`/${unidad}/${id}`}>
-                        <a>{title}</a>
+                        <a className={`${(id === breadcrumb.substring(0,3)) ? 'itemLink activeLink':'itemLink'}`}>{title}</a> 
                       </Link>
                       <br />
                     </li>

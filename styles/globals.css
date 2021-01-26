@@ -21,6 +21,8 @@ a {
   box-sizing: border-box;
 }
 
+
+
 /* .material-icons.md-dark { color: @apply ligh; }
 .material-icons.md-light { color: rgba(0, 0, 0, 0.54); } */
 
@@ -34,6 +36,7 @@ a {
 
 /*Text Styles*/
 .Titles {
+  @apply text-lightAccents-500 dark:text-darkAccents-500;
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -131,4 +134,60 @@ a {
 
 .contenido{
   @apply col-span-7 col-start-2 row-start-2 row-span-5;
+}
+
+.bodyPost > h2{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 37px; 
+}
+
+.bodyPost > ul{
+  list-style-type: circle;
+  list-style-position: inside;
+}
+
+.bodyPost ol{
+  list-style-type: circle;
+  list-style-position: inside;
+}
+
+.bodyPost > ol > li::marker{
+  @apply text-lightAccents-500 dark:text-darkAccents-500;
+}
+
+.bodyPost ol > li > ul{
+  list-style-type: disc;
+  list-style-position: inside;
+  margin-left: 1rem;
+}
+
+.bodyPost > ol > li > ul > li::marker{
+  @apply text-lightAccents-500 dark:text-darkAccents-500;
+}
+
+.bodyPost > ul > li::marker{
+  @apply text-lightAccents-500 dark:text-darkAccents-500;
+}
+
+
+.itemLink:hover{
+  @apply text-lightShades-700 dark:text-darkAccents-200;
+  cursor: pointer;
+}
+
+.activeLink{
+  @apply text-lightAccents-500 dark:text-darkAccents-500;
+}
+
+.activeLink::before{
+  content: "";
+  @apply bg-lightAccents-500 dark:bg-darkAccents-500;
+  margin-right: 0.5rem;
+  padding-right: 2.5px;
+  width: 4px;
+  height: 24px;
+  border-radius: 50px;
 }
