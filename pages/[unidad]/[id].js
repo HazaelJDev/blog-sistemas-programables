@@ -25,8 +25,8 @@ export async function getStaticPaths() {
 }
 
 export default function Post({ postData, allPostsData }) {
-    return (
-      <Layout allPostsData={allPostsData} breadcrumb={postData.title}>
+  return (
+      <Layout allPostsData={allPostsData} breadcrumb={postData.title} btnTheme={'dark_mode'}>
         <Head>
           <title>{postData.title}</title>
         </Head>

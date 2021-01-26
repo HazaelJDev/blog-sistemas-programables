@@ -1,17 +1,27 @@
 import Head from 'next/head'
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import styles from './layout.module.css'
 //import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import { useTheme } from "next-themes"
 
 const name = 'Hazael Jiménez'
 export const siteTitle = 'Sistemas Programables'
 
-export default function Layout({ children, home, allPostsData, breadcrumb}) {
-  const [darkMode, setDarkMode] = useState('dark_mode');
+export default function Layout({ children, home, allPostsData, breadcrumb, btnTheme}) {
+  const [darkMode, setDarkMode] = useState(btnTheme);
+  const [isMounted, setIsMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
   const handleDarkMode = () => {
-    setDarkMode( darkMode === 'light_mode' ? 'dark_mode' : 'light_mode')
+    if (isMounted) {
+      setTheme(theme === "light" ? "dark" : "light")
+      setDarkMode( theme === "dark" ? 'dark_mode' : 'light_mode')
+    }
   }
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <div>
       <Head>
@@ -69,7 +79,7 @@ export default function Layout({ children, home, allPostsData, breadcrumb}) {
           <main className="contContenido">
             <nav className="navContenido">
               <div className="Text-BreadCrumbs">{breadcrumb !== undefined ? `Home > Unidad ${breadcrumb[0]} > ${breadcrumb}` : 'Home'}</div>
-              <button className="" onClick={handleDarkMode}><span class={`material-icons md-48 ${darkMode === 'light_mode' ? 'text-lightAccents-500' : 'text-lightShades-700'}`}>{darkMode}</span></button>
+              <button className="" onClick={handleDarkMode}><span class="material-icons md-48 text-lightShades-700 dark:text-lightAccents-500">{darkMode}</span></button>
             </nav>
             <section className="contenido">
               <main>{children}</main>

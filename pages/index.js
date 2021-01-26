@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Layout, { siteTitle } from '../components/layout'
 import { getSortedPostsData } from '../lib/posts'
+import { useEffect } from 'react'
 //import Date from '../components/date'
 //import utilStyles from '../styles/utils.module.css'
 
@@ -18,12 +19,12 @@ export async function getStaticProps() {
 
 export default function Home({allPostsData}) {
   return (
-    <Layout home allPostsData={allPostsData}>
+    <Layout home allPostsData={allPostsData} btnTheme={'dark_mode'}>
       <Head>
         <title>{siteTitle}</title>
       </Head>
       <section>
-        <p className="Text-Breadcumbs">{`El microcontrolador ejecuta el programa cargado en la memoria Flash. Esto se
+        <p className="Text-BreadCrumbs">{`El microcontrolador ejecuta el programa cargado en la memoria Flash. Esto se
           denomina el código ejecutable y está compuesto por una serie de ceros y unos,
           aparentemente sin significado. Dependiendo de la arquitectura del microcontrolador, el código binario está compuesto por palabras de 12, 14 o 16
           bits de anchura. Cada palabra se interpreta por la CPU como una instrucción a ser

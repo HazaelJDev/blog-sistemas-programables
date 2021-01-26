@@ -29,7 +29,7 @@ a {
 }
 
 .layout{
-  @apply bg-lightShades-500 grid grid-cols-12 gap-5;
+  @apply bg-lightShades-500 dark:bg-darkShades-500 grid grid-cols-12 gap-5;
 }
 
 /*Text Styles*/
@@ -50,6 +50,7 @@ a {
 }
 
 .UnidadTitle {
+  @apply text-darkShades-500 dark:text-lightShades-500;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -59,6 +60,7 @@ a {
 }
 
 .Text-BreadCrumbs {
+  @apply text-darkShades-500 dark:text-lightShades-500;
   font-family: Rubik;
   font-style: normal;
   font-weight: normal;
@@ -97,18 +99,18 @@ a {
 }
 
 .cardMenu {
+  @apply bg-lightShades-500 dark:bg-darkShades-500;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 8px;
   min-width: 100%;
-  background: #F6F5F3;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 }
 
 .TitleMateria {
-  @apply Subtitles text-lightAccents-500;
+  @apply Subtitles text-lightAccents-500 dark:text-darkAccents-500;
   display: flex;
   align-items: center;
   text-align: center;
