@@ -10,16 +10,46 @@ export const siteTitle = 'Sistemas Programables'
 
 export default function Layout({ children, home, allPostsData, breadcrumb, btnTheme}) {
   const [darkMode, setDarkMode] = useState(btnTheme);
+  const [menu, setMenu] = useState('menu');
   const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+
   const handleDarkMode = () => {
     if (isMounted) {
       setTheme(theme === "light" ? "dark" : "light")
       setDarkMode( theme === "dark" ? 'dark_mode' : 'light_mode')
     }
   }
+
+  const handleMenu = () => {
+    setMenu(menu === 'menu' ? 'close' : 'menu')
+  }
+
   useEffect(() => {
     setIsMounted(true);
+    if (typeof window !== 'undefined') {
+      // Handler to call on window resize
+      function handleResize() {
+        // Set window width/height to state
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
+    
+      // Add event listener
+      window.addEventListener("resize", handleResize);
+     
+      // Call handler right away so state gets updated with initial window size
+      handleResize();
+    
+      // Remove event listener on cleanup
+      return () => window.removeEventListener("resize", handleResize);
+    }
   }, []);
 
   return (
@@ -40,13 +70,24 @@ export default function Layout({ children, home, allPostsData, breadcrumb, btnTh
         <meta name="twitter:card" content="summary_large_image" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       </Head>
-      <div className="contLayout">
+       <div className="contLayout">
         <div className="layout">
-          <nav className="NavMenu">
-            <header className="titleMenu">
-              <img className="avatar" src="https://res.cloudinary.com/hazadev01/image/upload/v1609907719/microcontroladores_lymjpl.jpg" alt="imgMateria" />
+          {/* Movil Design - Header*/}
+          { windowSize.width < 1024 &&
+            <header className="titleMenuMovil">
+              <button className="activeFocusElements buttonPadding" aria-label="Menu" onClick={handleMenu}><span class="material-icons md-48 text-darkShades-500">{menu}</span></button>
               <Link href="/"><a className="TitleMateria" tabIndex="0">Sistemas Programables</a></Link>
-            </header>
+              <button className="activeFocusElements buttonPadding" aria-label="Dark Mode" onClick={handleDarkMode}><span class="material-icons md-48 text-lightShades-700 dark:text-lightAccents-500">{darkMode}</span></button>
+            </header>          
+          }
+          <nav className={`NavMenu ${windowSize.width < 1024 ? (menu !== 'close' ? 'hidden' : 'grid') : 'grid'}`}>
+            {/* Desktop Design - Header*/}
+            { windowSize.width >= 1024 &&
+              <header className="titleMenu">
+                <img className="avatar" src="https://res.cloudinary.com/hazadev01/image/upload/v1609907719/microcontroladores_lymjpl.jpg" alt="imgMateria" />
+                <Link href="/"><a className="TitleMateria" tabIndex="0">Sistemas Programables</a></Link>
+              </header>
+            }
             <section class="Menus">
               <menu class="cardMenu">
                 <h2 class="UnidadTitle">Unidad 4.- Programación de Microcontroladores.</h2>
@@ -77,10 +118,13 @@ export default function Layout({ children, home, allPostsData, breadcrumb, btnTh
             </section>
           </nav>
           <main className="contContenido">
-            <nav className="navContenido">
-              <div className="Text-BreadCrumbs" aria-label="Breadcrumbs">{breadcrumb !== undefined ? `Home > Unidad ${breadcrumb[0]} > ${breadcrumb}` : 'Home'}</div>
-              <button className="activeFocusElements buttonDarkMode" aria-label="Dark Mode Button" onClick={handleDarkMode}><span class="material-icons md-48 text-lightShades-700 dark:text-lightAccents-500">{darkMode}</span></button>
-            </nav>
+            {/* Nav con Breadcrumbs y DarkMode Desktop*/}
+            { windowSize.width >= 1024 &&
+              <nav className="navContenido">
+                <div className="Text-BreadCrumbs" aria-label="Breadcrumbs">{breadcrumb !== undefined ? `Home > Unidad ${breadcrumb[0]} > ${breadcrumb}` : 'Home'}</div>
+                <button className="activeFocusElements buttonPadding" aria-label="Dark Mode" onClick={handleDarkMode}><span class="material-icons md-48 text-lightShades-700 dark:text-lightAccents-500">{darkMode}</span></button>
+              </nav>
+            }
             <section className="contenido">
               <main>{children}</main>
             </section>
