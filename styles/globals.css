@@ -85,7 +85,7 @@ a {
   justify-content: space-around;
   align-items: center;
   flex-wrap: nowrap;
-
+  height: 350px;
 }
 
 .Menus {
@@ -112,12 +112,20 @@ a {
   border-radius: 10px;
 }
 
+.buttonDarkMode{
+  padding: 0.5rem;
+}
+
+.activeFocusElements{
+  @apply focus:outline-none focus:ring-2 focus:ring-lightAccents-500 dark:focus:ring-darkAccents-500;
+}
+
 .TitleMateria {
-  @apply Subtitles text-lightAccents-500 dark:text-darkAccents-500;
+  @apply Subtitles activeFocusElements text-lightAccents-500 dark:text-darkAccents-500;
   display: flex;
   align-items: center;
   text-align: center;
-  padding-top: 1.5rem;
+  padding: 0.5rem 0 0.5rem 0;
 }
 
 .TitleMateria:hover{

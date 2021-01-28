@@ -45,7 +45,7 @@ export default function Layout({ children, home, allPostsData, breadcrumb, btnTh
           <nav className="NavMenu">
             <header className="titleMenu">
               <img className="avatar" src="https://res.cloudinary.com/hazadev01/image/upload/v1609907719/microcontroladores_lymjpl.jpg" alt="imgMateria" />
-              <Link href="/"><h1 className="TitleMateria">Sistemas Programables</h1></Link>
+              <Link href="/"><a className="TitleMateria" tabIndex="0">Sistemas Programables</a></Link>
             </header>
             <section class="Menus">
               <menu class="cardMenu">
@@ -54,7 +54,7 @@ export default function Layout({ children, home, allPostsData, breadcrumb, btnTh
                   {allPostsData[0].map(({id,title,unidad}) => (
                     <li className="Text-BreadCrumbs" key={id}>
                       <Link href={`/${unidad}/${id}`}>
-                        <a className={`${(id === breadcrumb.substring(0,3)) ? 'itemLink activeLink':'itemLink'}`}>{title}</a> 
+                        <a className={`activeFocusElements ${breadcrumb !== undefined ? (id === breadcrumb.substring(0,3)) ? 'itemLink activeLink':'itemLink' : 'itemLink'}`}>{title}</a> 
                       </Link>
                       <br />
                     </li>
@@ -67,7 +67,7 @@ export default function Layout({ children, home, allPostsData, breadcrumb, btnTh
                   {allPostsData[1].map(({ id,title,unidad}) => (
                     <li className="Text-BreadCrumbs" key={id}>
                       <Link href={`/${unidad}/${id}`}>
-                        <a className={`${(id === breadcrumb.substring(0,3)) ? 'itemLink activeLink':'itemLink'}`}>{title}</a> 
+                        <a className={`activeFocusElements ${breadcrumb !== undefined ? (id === breadcrumb.substring(0,3)) ? 'itemLink activeLink':'itemLink' : 'itemLink'}`}>{title}</a> 
                       </Link>
                       <br />
                     </li>
@@ -78,8 +78,8 @@ export default function Layout({ children, home, allPostsData, breadcrumb, btnTh
           </nav>
           <main className="contContenido">
             <nav className="navContenido">
-              <div className="Text-BreadCrumbs">{breadcrumb !== undefined ? `Home > Unidad ${breadcrumb[0]} > ${breadcrumb}` : 'Home'}</div>
-              <button className="" onClick={handleDarkMode}><span class="material-icons md-48 text-lightShades-700 dark:text-lightAccents-500">{darkMode}</span></button>
+              <div className="Text-BreadCrumbs" aria-label="Breadcrumbs">{breadcrumb !== undefined ? `Home > Unidad ${breadcrumb[0]} > ${breadcrumb}` : 'Home'}</div>
+              <button className="activeFocusElements buttonDarkMode" aria-label="Dark Mode Button" onClick={handleDarkMode}><span class="material-icons md-48 text-lightShades-700 dark:text-lightAccents-500">{darkMode}</span></button>
             </nav>
             <section className="contenido">
               <main>{children}</main>
