@@ -8,8 +8,8 @@ import { useTheme } from "next-themes"
 const name = 'Hazael Jiménez'
 export const siteTitle = 'Sistemas Programables'
 
-export default function Layout({ children, home, allPostsData, breadcrumb, btnTheme}) {
-  const [darkMode, setDarkMode] = useState(btnTheme);
+export default function Layout({ children, home, allPostsData, breadcrumb}) {
+  const [darkMode, setDarkMode] = useState('dark_mode');
   const [menu, setMenu] = useState('menu');
   const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -32,6 +32,10 @@ export default function Layout({ children, home, allPostsData, breadcrumb, btnTh
   useEffect(() => {
     setIsMounted(true);
     if (typeof window !== 'undefined') {
+      
+      setDarkMode(window.localStorage.getItem('theme') == 'dark' ? 'light_mode' : 'dark_mode')
+    
+
       // Handler to call on window resize
       function handleResize() {
         // Set window width/height to state
@@ -40,7 +44,8 @@ export default function Layout({ children, home, allPostsData, breadcrumb, btnTh
           height: window.innerHeight,
         });
       }
-    
+
+      
       // Add event listener
       window.addEventListener("resize", handleResize);
      
@@ -95,7 +100,10 @@ export default function Layout({ children, home, allPostsData, breadcrumb, btnTh
                   {allPostsData[0].map(({id,title,unidad}) => (
                     <li className="Text-BreadCrumbs" key={id}>
                       <Link href={`/${unidad}/${id}`}>
-                        <a className={`activeFocusElements ${breadcrumb !== undefined ? (id === breadcrumb.substring(0,3)) ? 'itemLink activeLink':'itemLink' : 'itemLink'}`}>{title}</a> 
+                        { windowSize.width <= 1024 
+                          ? <a onClick={handleMenu} className={`activeFocusElements ${breadcrumb !== undefined ? (id === breadcrumb.substring(0,3)) ? 'itemLink activeLink':'itemLink' : 'itemLink'}`}>{title}</a> 
+                          : <a className={`activeFocusElements ${breadcrumb !== undefined ? (id === breadcrumb.substring(0,3)) ? 'itemLink activeLink':'itemLink' : 'itemLink'}`}>{title}</a> 
+                        }
                       </Link>
                       <br />
                     </li>
@@ -108,7 +116,10 @@ export default function Layout({ children, home, allPostsData, breadcrumb, btnTh
                   {allPostsData[1].map(({ id,title,unidad}) => (
                     <li className="Text-BreadCrumbs" key={id}>
                       <Link href={`/${unidad}/${id}`}>
-                        <a className={`activeFocusElements ${breadcrumb !== undefined ? (id === breadcrumb.substring(0,3)) ? 'itemLink activeLink':'itemLink' : 'itemLink'}`}>{title}</a> 
+                        { windowSize.width <= 1024 
+                          ? <a onClick={handleMenu} className={`activeFocusElements ${breadcrumb !== undefined ? (id === breadcrumb.substring(0,3)) ? 'itemLink activeLink':'itemLink' : 'itemLink'}`}>{title}</a> 
+                          : <a className={`activeFocusElements ${breadcrumb !== undefined ? (id === breadcrumb.substring(0,3)) ? 'itemLink activeLink':'itemLink' : 'itemLink'}`}>{title}</a> 
+                        }
                       </Link>
                       <br />
                     </li>

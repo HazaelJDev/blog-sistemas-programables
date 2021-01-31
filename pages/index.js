@@ -19,7 +19,7 @@ export async function getStaticProps() {
 
 export default function Home({allPostsData}) {
   return (
-    <Layout home allPostsData={allPostsData} btnTheme={'dark_mode'}>
+    <Layout home allPostsData={allPostsData}>
       <Head>
         <title>{siteTitle}</title>
       </Head>
